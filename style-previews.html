@@ -1,0 +1,621 @@
+
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IBM Bob Workshop — 5 Style Previews</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  background: #0a0a0f;
+  color: #e8e8f0;
+  min-height: 100vh;
+}
+
+/* hide radios */
+input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+
+/* ─── page header ─── */
+.page-header {
+  padding: 40px 40px 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.page-header h1 {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 8px;
+}
+.page-header p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e8e8f0;
+  letter-spacing: -.01em;
+}
+.page-header span { color: #5b8cf7; }
+
+/* ─── pill nav via label ─── */
+.style-nav {
+  display: flex;
+  gap: 8px;
+  padding: 0 40px 28px;
+  max-width: 1300px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.style-nav label {
+  padding: 7px 16px;
+  border-radius: 99px;
+  border: 1px solid #2a2a38;
+  background: transparent;
+  color: #777;
+  font-size: 12px;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  user-select: none;
+}
+body:has(#s1:checked) .style-nav label[for=s1],
+body:has(#s2:checked) .style-nav label[for=s2],
+body:has(#s3:checked) .style-nav label[for=s3],
+body:has(#s4:checked) .style-nav label[for=s4],
+body:has(#s5:checked) .style-nav label[for=s5] {
+  background: #5b8cf7;
+  border-color: #5b8cf7;
+  color: #fff;
+}
+
+/* ─── preview area ─── */
+.preview-area {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+
+/* all panels hidden by default */
+.style-panel { display: none; }
+
+body:has(#s1:checked) #p1,
+body:has(#s2:checked) #p2,
+body:has(#s3:checked) #p3,
+body:has(#s4:checked) #p4,
+body:has(#s5:checked) #p5 { display: block; }
+
+.preview-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.preview-meta h2 { font-size: 15px; font-weight: 700; color: #e8e8f0; }
+.preview-meta p  { font-size: 12px; color: #555; letter-spacing: .04em; }
+
+/* browser chrome */
+.browser-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #1e1e2e;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+.browser-bar {
+  background: #161622;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #1e1e2e;
+}
+.browser-dots { display:flex; gap:5px; }
+.browser-dots span { width:9px; height:9px; border-radius:50%; background:#2d2d40; }
+.browser-url {
+  flex: 1;
+  background: #0f0f1a;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #444;
+  font-family: monospace;
+}
+.page-preview {
+  background: #fff;
+  height: 460px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* desc cards */
+.desc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.desc-card {
+  background: #111118;
+  border: 1px solid #1e1e2e;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.desc-card h4 { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #5b8cf7; margin-bottom: 5px; }
+.desc-card p  { font-size: 12px; color: #777; line-height: 1.6; }
+
+/* ═══════════════════════════════════
+   STYLE 1 — Monochrome Editorial
+═══════════════════════════════════ */
+.s1 { font-family: -apple-system,system-ui,sans-serif; background:#fafaf8; height:100%; display:grid; grid-template-columns:220px 1fr; }
+.s1-sb { background:#111; padding:28px 20px; display:flex; flex-direction:column; }
+.s1-logo { font-size:10px; letter-spacing:.14em; color:#555; text-transform:uppercase; margin-bottom:28px; }
+.s1-logo strong { color:#fff; display:block; font-size:14px; letter-spacing:-.01em; margin-bottom:2px; }
+.s1-ni { padding:8px 0; font-size:12px; color:#3a3a3a; border-bottom:1px solid #1c1c1c; display:flex; align-items:center; gap:8px; }
+.s1-ni.a { color:#fff; }
+.s1-dot { width:4px; height:4px; border-radius:50%; background:#3a3a3a; flex-shrink:0; }
+.s1-ni.a .s1-dot { background:#e8ff60; }
+.s1-main { padding:32px 36px; overflow:hidden; }
+.s1-bc { font-size:10px; color:#999; letter-spacing:.08em; text-transform:uppercase; margin-bottom:20px; }
+.s1-h1 { font-size:22px; font-weight:700; color:#111; letter-spacing:-.03em; margin-bottom:4px; }
+.s1-sub { font-size:12px; color:#666; margin-bottom:24px; }
+.s1-tabs { display:flex; margin-bottom:24px; border-bottom:1px solid #ddd; }
+.s1-tab { padding:7px 18px; font-size:12px; color:#999; }
+.s1-tab.a { color:#111; font-weight:600; border-bottom:2px solid #111; margin-bottom:-1px; }
+.s1-cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.s1-card { border:1px solid #e5e5e5; border-radius:6px; padding:14px; background:#fff; }
+.s1-card.ac { border-left:3px solid #e8ff60; }
+.s1-cl { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#999; margin-bottom:4px; }
+.s1-ct { font-size:12px; font-weight:600; color:#111; margin-bottom:3px; }
+.s1-cs { font-size:11px; color:#666; }
+
+/* ═══════════════════════════════════
+   STYLE 2 — IBM Blueprint
+═══════════════════════════════════ */
+.s2 { font-family:-apple-system,system-ui,sans-serif; background:#051328; height:100%; display:flex; flex-direction:column; }
+.s2-top { background:#0a1f3e; border-bottom:1px solid #0f3060; padding:0 28px; display:flex; align-items:stretch; height:44px; }
+.s2-brand { display:flex; align-items:center; gap:9px; margin-right:28px; border-right:1px solid #0f3060; padding-right:20px; }
+.s2-box { width:26px; height:26px; background:#0062ff; border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; }
+.s2-bn { font-size:12px; font-weight:600; color:#c0d8ff; }
+.s2-nav { display:flex; align-items:stretch; }
+.s2-ni { padding:0 14px; font-size:12px; color:#4a7ab5; display:flex; align-items:center; border-bottom:2px solid transparent; }
+.s2-ni.a { color:#79b8ff; border-bottom-color:#0062ff; }
+.s2-hero { background:linear-gradient(135deg,#0a1f3e 0%,#051328 60%); padding:28px 28px 20px; border-bottom:1px solid #0f3060; display:flex; align-items:flex-end; justify-content:space-between; }
+.s2-h1 { font-size:20px; font-weight:700; color:#e8f4ff; letter-spacing:-.02em; }
+.s2-h1 span { color:#0062ff; }
+.s2-hsub { font-size:12px; color:#4a7ab5; margin-top:5px; }
+.s2-badge { background:#0f3060; border:1px solid #1a4a80; border-radius:20px; padding:3px 10px; font-size:10px; color:#79b8ff; }
+.s2-tiles { padding:20px 28px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.s2-tile { background:#0a1f3e; border:1px solid #0f3060; border-radius:6px; padding:14px; position:relative; overflow:hidden; }
+.s2-tile::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:#0062ff; }
+.s2-tile.t2::before { background:#00a896; }
+.s2-tile.t3::before { background:#7c3aed; }
+.s2-tn { font-size:20px; font-weight:700; color:#0062ff; font-family:monospace; }
+.s2-tile.t2 .s2-tn { color:#00a896; }
+.s2-tile.t3 .s2-tn { color:#a78bfa; }
+.s2-tlb { font-size:10px; color:#4a7ab5; margin-top:2px; letter-spacing:.04em; }
+.s2-tt { font-size:12px; font-weight:600; color:#c0d8ff; margin-top:8px; }
+.s2-ts { font-size:11px; color:#4a7ab5; padding:3px 0; border-bottom:1px solid #0f3060; }
+.s2-ts:last-child { border:none; }
+
+/* ═══════════════════════════════════
+   STYLE 3 — Warm Minimal
+═══════════════════════════════════ */
+.s3 { font-family:-apple-system,system-ui,sans-serif; background:#f5f2ee; height:100%; display:flex; flex-direction:column; }
+.s3-hd { background:#fff; border-bottom:1px solid #e8e2da; padding:18px 36px; display:flex; align-items:center; justify-content:space-between; }
+.s3-lg { font-size:13px; font-weight:700; color:#2c2825; }
+.s3-lg span { color:#c85a1e; }
+.s3-nav { display:flex; gap:22px; }
+.s3-ni { font-size:12px; color:#8a7e75; }
+.s3-ni.a { color:#2c2825; font-weight:600; border-bottom:2px solid #c85a1e; padding-bottom:2px; }
+.s3-body { padding:36px; flex:1; }
+.s3-ey { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#c85a1e; font-weight:600; margin-bottom:7px; }
+.s3-h1 { font-size:26px; font-weight:700; color:#2c2825; letter-spacing:-.03em; line-height:1.2; margin-bottom:7px; }
+.s3-desc { font-size:12px; color:#8a7e75; margin-bottom:28px; }
+.s3-steps { display:flex; flex-direction:column; gap:0; }
+.s3-row { display:flex; gap:14px; align-items:flex-start; }
+.s3-num { width:26px; height:26px; background:#2c2825; color:#f5f2ee; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px; }
+.s3-num.d { background:#c85a1e; }
+.s3-ttl { font-size:13px; font-weight:600; color:#2c2825; }
+.s3-sub { font-size:11px; color:#8a7e75; }
+.s3-div { width:1px; height:14px; background:#d9d2c9; margin-left:12px; }
+
+/* ═══════════════════════════════════
+   STYLE 4 — Terminal Dark Mono
+═══════════════════════════════════ */
+.s4 { font-family:'IBM Plex Mono','Menlo',monospace; background:#0d1117; height:100%; display:flex; flex-direction:column; color:#c9d1d9; }
+.s4-top { display:flex; align-items:center; padding:0 20px; height:40px; border-bottom:1px solid #21262d; gap:12px; }
+.s4-pr { color:#3fb950; font-size:11px; }
+.s4-cmd { color:#79c0ff; font-size:11px; }
+.s4-cur { display:inline-block; width:7px; height:12px; background:#3fb950; }
+.s4-tabs { display:flex; padding:0 20px; background:#161b22; border-bottom:1px solid #21262d; }
+.s4-tab { padding:7px 14px; font-size:11px; color:#484f58; border-bottom:2px solid transparent; }
+.s4-tab.a { color:#e6edf3; border-bottom-color:#388bfd; }
+.s4-body { padding:20px; flex:1; }
+.s4-sh { color:#3fb950; font-size:11px; margin-bottom:10px; }
+.s4-blk { border:1px solid #21262d; border-radius:6px; background:#0d1117; margin-bottom:8px; overflow:hidden; }
+.s4-bh { background:#161b22; padding:7px 14px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #21262d; }
+.s4-btl { font-size:11px; color:#79c0ff; }
+.s4-tag { font-size:10px; color:#3fb950; background:rgba(63,185,80,.1); padding:2px 7px; border-radius:3px; }
+.s4-tag.w { color:#d29922; background:rgba(210,153,34,.1); }
+.s4-bb { padding:10px 14px; }
+.s4-item { font-size:11px; color:#8b949e; padding:2px 0; display:flex; gap:7px; }
+.s4-item::before { content:'›'; color:#484f58; }
+.s4-item span { color:#e6edf3; }
+.s4-code { background:#0d1117; border:1px solid #21262d; border-radius:4px; padding:7px 10px; margin:6px 0; }
+.s4-cl { font-size:11px; color:#8b949e; }
+.s4-kw { color:#ff7b72; }
+.s4-fn { color:#d2a8ff; }
+.s4-str { color:#a5d6ff; }
+
+/* ═══════════════════════════════════
+   STYLE 5 — Soft Glass Frost
+═══════════════════════════════════ */
+.s5 { font-family:-apple-system,system-ui,sans-serif; background:linear-gradient(135deg,#e8ecf8 0%,#f0eaf8 50%,#e8f4f0 100%); height:100%; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+.s5-orb1 { position:absolute; top:-60px; right:-40px; width:280px; height:280px; background:rgba(99,102,241,.12); border-radius:50%; filter:blur(55px); pointer-events:none; }
+.s5-orb2 { position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; background:rgba(16,185,129,.08); border-radius:50%; filter:blur(45px); pointer-events:none; }
+.s5-hd { position:relative; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.5); border-bottom:1px solid rgba(255,255,255,.6); }
+.s5-lg { font-size:13px; font-weight:700; color:#1e1b4b; }
+.s5-lg sub { font-size:9px; color:#6366f1; font-weight:600; letter-spacing:.06em; text-transform:uppercase; vertical-align:super; }
+.s5-dots { display:flex; gap:5px; }
+.s5-dot { width:7px; height:7px; border-radius:50%; background:rgba(99,102,241,.2); }
+.s5-dot.a { background:#6366f1; }
+.s5-body { flex:1; padding:28px 32px; position:relative; }
+.s5-h1 { font-size:19px; font-weight:700; color:#1e1b4b; letter-spacing:-.02em; margin-bottom:3px; }
+.s5-sub { font-size:12px; color:#7c8ab0; margin-bottom:22px; }
+.s5-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.s5-card { background:rgba(255,255,255,.65); border:1px solid rgba(255,255,255,.8); border-radius:12px; padding:14px; box-shadow:0 2px 12px rgba(99,102,241,.07); }
+.s5-ic { width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; margin-bottom:9px; }
+.s5-ic.b { background:rgba(99,102,241,.12); }
+.s5-ic.g { background:rgba(16,185,129,.12); }
+.s5-ic.p { background:rgba(139,92,246,.12); }
+.s5-ct { font-size:12px; font-weight:700; color:#1e1b4b; margin-bottom:3px; }
+.s5-cd { font-size:11px; color:#7c8ab0; line-height:1.5; }
+.s5-prog { margin-top:18px; }
+.s5-pl { display:flex; justify-content:space-between; font-size:11px; color:#7c8ab0; margin-bottom:5px; }
+.s5-pl span:last-child { color:#6366f1; font-weight:700; }
+.s5-tr { height:5px; background:rgba(99,102,241,.1); border-radius:99px; overflow:hidden; }
+.s5-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,#6366f1,#8b5cf6); width:50%; }
+
+/* footer */
+.page-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 11px;
+  color: #333;
+  border-top: 1px solid #1a1a28;
+}
+</style>
+</head>
+<body>
+
+
+<input type="radio" id="s1" name="style" />
+<input type="radio" id="s2" name="style" />
+<input type="radio" id="s3" name="style" />
+<input type="radio" id="s4" name="style" />
+<input type="radio" id="s5" name="style" />
+
+<div class="page-header">
+  <h1>IBM Bob Workshop · Page Style Preview</h1>
+  <p>5 種<span> 簡潔時尚</span>設計方向</p>
+</div>
+
+<div class="style-nav">
+  <label>① 極簡黑白 Editorial</label>
+  <label>② IBM Blueprint 深藍</label>
+  <label>③ 暖色 Minimal</label>
+  <label>④ Terminal Dark Mono</label>
+  <label>⑤ Soft Glass Frost</label>
+</div>
+
+<div class="preview-area">
+
+  
+  <div class="style-panel" id="p1">
+    <div class="preview-meta">
+      <h2>① 極簡黑白 Editorial</h2>
+      <p>Sidebar · 黑底側欄 + 米白主區 · 螢光黃點綴</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bob-workshop.ibm.com/preparation</div>
+      </div>
+      <div class="page-preview">
+        <div class="s1">
+          <div class="s1-sb">
+            <div class="s1-logo"><strong>IBM Bob</strong>Workshop Prep</div>
+            <div class="s1-ni a"><div class="s1-dot"></div> 活動議程</div>
+            <div class="s1-ni"><div class="s1-dot"></div> 帳號準備</div>
+            <div class="s1-ni"><div class="s1-dot"></div> 環境安裝</div>
+            <div class="s1-ni"><div class="s1-dot"></div> 網路需求</div>
+            <div class="s1-ni"><div class="s1-dot"></div> 疑難排解</div>
+            <div class="s1-ni"><div class="s1-dot"></div> 聯絡資訊</div>
+          </div>
+          <div class="s1-main">
+            <div class="s1-bc">Workshop / 行前準備</div>
+            <div class="s1-h1">行前準備說明</div>
+            <div class="s1-sub">Workshop 開始前，請完成以下所有步驟</div>
+            <div class="s1-tabs">
+              <div class="s1-tab a">完整版</div>
+              <div class="s1-tab">帶著動手做</div>
+            </div>
+            <div class="s1-cards">
+              <div class="s1-card ac">
+                <div class="s1-cl">Part 1 · 1h 40m</div>
+                <div class="s1-ct">IBM Bob 介紹</div>
+                <div class="s1-cs">核心概念 · UI 巡禮 · AI-SDLC 演示</div>
+              </div>
+              <div class="s1-card">
+                <div class="s1-cl">Part 2 · 1h 50m</div>
+                <div class="s1-ct">Bobathon 實戰</div>
+                <div class="s1-cs">實戰挑戰 · 成果分享 · 大合照</div>
+              </div>
+              <div class="s1-card ac">
+                <div class="s1-cl">必要 · 帳號</div>
+                <div class="s1-ct">建立 Bob 帳號</div>
+                <div class="s1-cs">⚠ 請在 Workshop 前完成</div>
+              </div>
+              <div class="s1-card">
+                <div class="s1-cl">必要 · 工具</div>
+                <div class="s1-ct">安裝 Bob IDE</div>
+                <div class="s1-cs">⚠ 請提前 3 天安裝</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc-grid">
+      <div class="desc-card"><h4>色調</h4><p>純黑側欄 + 米白主區，螢光黃 #e8ff60 做唯一點綴</p></div>
+      <div class="desc-card"><h4>排版</h4><p>側欄導航 + 卡片網格，資訊密度高，適合重複查閱</p></div>
+      <div class="desc-card"><h4>適合情境</h4><p>技術文件型頁面，受眾為開發者，需快速掃描</p></div>
+    </div>
+  </div>
+
+  
+  <div class="style-panel" id="p2">
+    <div class="preview-meta">
+      <h2>② IBM Blueprint 深藍</h2>
+      <p>Topbar · 深藍 + IBM Blue #0062ff · 數字計數強調</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bob-workshop.ibm.com/preparation</div>
+      </div>
+      <div class="page-preview">
+        <div class="s2">
+          <div class="s2-top">
+            <div class="s2-brand">
+              <div class="s2-box">B</div>
+              <div class="s2-bn">IBM Bob Workshop</div>
+            </div>
+            <div style="display:flex;align-items:stretch">
+              <div class="s2-ni">活動議程</div>
+              <div class="s2-ni a">行前準備</div>
+              <div class="s2-ni">動手做</div>
+            </div>
+          </div>
+          <div class="s2-hero">
+            <div>
+              <div class="s2-h1">Workshop <span>行前準備</span></div>
+              <div class="s2-hsub">請在 Workshop 開始前完成所有必要步驟</div>
+            </div>
+            <div class="s2-badge">2026-05-22 更新</div>
+          </div>
+          <div class="s2-tiles">
+            <div class="s2-tile">
+              <div class="s2-tn">01</div>
+              <div class="s2-tlb">REQUIRED · ACCOUNT</div>
+              <div class="s2-tt">建立 Bob 帳號</div>
+              <div class="s2-ts">前往 bob.ibm.com</div>
+              <div class="s2-ts">取得免費試用</div>
+              <div class="s2-ts">驗證 Email</div>
+            </div>
+            <div class="s2-tile t2">
+              <div class="s2-tn">02</div>
+              <div class="s2-tlb">REQUIRED · 3 DAYS BEFORE</div>
+              <div class="s2-tt">安裝 Bob IDE</div>
+              <div class="s2-ts">下載 .pkg / .exe</div>
+              <div class="s2-ts">依精靈步驟安裝</div>
+              <div class="s2-ts">確認可啟動</div>
+            </div>
+            <div class="s2-tile t3">
+              <div class="s2-tn">03</div>
+              <div class="s2-tlb">REQUIRED · GIT</div>
+              <div class="s2-tt">安裝 Git</div>
+              <div class="s2-ts">git-scm.com/downloads</div>
+              <div class="s2-ts">git --version 驗證</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc-grid">
+      <div class="desc-card"><h4>色調</h4><p>深藍 #051328 底 + IBM Blue，三色 accent：藍 / 青 / 紫</p></div>
+      <div class="desc-card"><h4>排版</h4><p>固定 Topbar + Hero Banner + 三欄 Tile 卡片，貼近 IBM 品牌</p></div>
+      <div class="desc-card"><h4>適合情境</h4><p>最接近 IBM 官方風格，企業內部 Workshop 辨識度最高</p></div>
+    </div>
+  </div>
+
+  
+  <div class="style-panel" id="p3">
+    <div class="preview-meta">
+      <h2>③ 暖色 Minimal</h2>
+      <p>Step-flow · 米白底 + 磚紅 accent · 步驟引導感</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bob-workshop.ibm.com/preparation</div>
+      </div>
+      <div class="page-preview">
+        <div class="s3">
+          <div class="s3-hd">
+            <div class="s3-lg">IBM <span>Bob</span> Workshop</div>
+            <div class="s3-nav">
+              <div class="s3-ni">議程</div>
+              <div class="s3-ni a">行前準備</div>
+              <div class="s3-ni">動手做</div>
+              <div class="s3-ni">聯絡</div>
+            </div>
+          </div>
+          <div class="s3-body">
+            <div class="s3-ey">Before You Start</div>
+            <div class="s3-h1">Workshop<br />行前準備</div>
+            <div class="s3-desc">請在活動前完成以下 4 個步驟，確保當天順暢體驗</div>
+            <div class="s3-steps">
+              <div class="s3-row">
+                <div class="s3-num d">1</div>
+                <div><div class="s3-ttl">建立 IBM Bob 帳號</div><div class="s3-sub">前往 bob.ibm.com · 取得免費試用 · 驗證 Email</div></div>
+              </div>
+              <div class="s3-div"></div>
+              <div class="s3-row">
+                <div class="s3-num d">2</div>
+                <div><div class="s3-ttl">安裝 Bob IDE（提前 3 天）</div><div class="s3-sub">macOS / Windows / Linux 均支援</div></div>
+              </div>
+              <div class="s3-div"></div>
+              <div class="s3-row">
+                <div class="s3-num">3</div>
+                <div><div class="s3-ttl">安裝 Git</div><div class="s3-sub">git-scm.com/downloads · 驗證 git --version</div></div>
+              </div>
+              <div class="s3-div"></div>
+              <div class="s3-row">
+                <div class="s3-num">4</div>
+                <div><div class="s3-ttl">安裝 Java Extensions</div><div class="s3-sub">Extension Pack for Java · Spring Boot Extension Pack</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc-grid">
+      <div class="desc-card"><h4>色調</h4><p>米白 #f5f2ee + 磚紅 #c85a1e，溫暖卻不失專業</p></div>
+      <div class="desc-card"><h4>排版</h4><p>垂直步驟流，引導性強，適合初次接觸者按步驟操作</p></div>
+      <div class="desc-card"><h4>適合情境</h4><p>受眾包含非技術人員，需要清楚的步驟引導感</p></div>
+    </div>
+  </div>
+
+  
+  <div class="style-panel" id="p4">
+    <div class="preview-meta">
+      <h2>④ Terminal Dark Mono</h2>
+      <p>GitHub Dark · IBM Plex Mono · 綠 / 藍 / 紫三色語法高亮</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bob-workshop.ibm.com/preparation</div>
+      </div>
+      <div class="page-preview">
+        <div class="s4">
+          <div class="s4-top">
+            <span class="s4-pr">$</span>
+            <span class="s4-cmd">bob-workshop --mode prep</span>
+            <div class="s4-cur"></div>
+          </div>
+          <div class="s4-tabs">
+            <div class="s4-tab a">overview.md</div>
+            <div class="s4-tab">install.sh</div>
+            <div class="s4-tab">checklist.yml</div>
+          </div>
+          <div class="s4-body">
+            <div class="s4-sh"># 行前準備 · Required Steps</div>
+            <div class="s4-blk">
+              <div class="s4-bh"><span class="s4-btl">Step 01 — Bob Account</span><span class="s4-tag">REQUIRED</span></div>
+              <div class="s4-bb">
+                <div class="s4-item"><span>前往 bob.ibm.com 取得免費試用</span></div>
+                <div class="s4-item"><span>驗證 Email，確認帳號啟用</span></div>
+                <div class="s4-code"><div class="s4-cl"><span class="s4-kw">curl</span> <span class="s4-str">https://bob.ibm.com/api/verify</span></div></div>
+              </div>
+            </div>
+            <div class="s4-blk">
+              <div class="s4-bh"><span class="s4-btl">Step 02 — Bob IDE Install</span><span class="s4-tag w">3 DAYS BEFORE</span></div>
+              <div class="s4-bb">
+                <div class="s4-item"><span>下載 .pkg / .exe / .deb</span></div>
+                <div class="s4-item"><span>安裝 Extension Pack for Java + Spring Boot</span></div>
+              </div>
+            </div>
+            <div class="s4-blk">
+              <div class="s4-bh"><span class="s4-btl">Step 03 — Git</span><span class="s4-tag">REQUIRED</span></div>
+              <div class="s4-bb">
+                <div class="s4-code"><div class="s4-cl"><span class="s4-fn">git</span> <span class="s4-str">--version</span>  <span style="color:#484f58"># v2.x.x</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc-grid">
+      <div class="desc-card"><h4>色調</h4><p>GitHub Dark #0d1117 底，綠 #3fb950 / 藍 #79c0ff / 紫 #d2a8ff 語法色</p></div>
+      <div class="desc-card"><h4>排版</h4><p>Tab 切換模擬 IDE / 程式碼編輯器，帶終端機輸入感</p></div>
+      <div class="desc-card"><h4>適合情境</h4><p>受眾為開發者，強調技術感與工具屬性，個性鮮明</p></div>
+    </div>
+  </div>
+
+  
+  <div class="style-panel" id="p5">
+    <div class="preview-meta">
+      <h2>⑤ Soft Glass Frost</h2>
+      <p>Glassmorphism · 淡紫漸層底 · 霜白半透明卡片</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bob-workshop.ibm.com/preparation</div>
+      </div>
+      <div class="page-preview">
+        <div class="s5">
+          <div class="s5-orb1"></div>
+          <div class="s5-orb2"></div>
+          <div class="s5-hd">
+            <div class="s5-lg">IBM Bob<sub>Workshop</sub></div>
+            <div class="s5-dots">
+              <div class="s5-dot a"></div>
+              <div class="s5-dot"></div>
+              <div class="s5-dot"></div>
+              <div class="s5-dot"></div>
+            </div>
+          </div>
+          <div class="s5-body">
+            <div class="s5-h1">Workshop 行前準備</div>
+            <div class="s5-sub">完成以下步驟，確保活動當天順暢體驗</div>
+            <div class="s5-cards">
+              <div class="s5-card">
+                <div class="s5-ic b">🔐</div>
+                <div class="s5-ct">建立 Bob 帳號</div>
+                <div class="s5-cd">前往 bob.ibm.com 取得免費試用，驗證 Email 啟用帳號</div>
+              </div>
+              <div class="s5-card">
+                <div class="s5-ic g">💻</div>
+                <div class="s5-ct">安裝 Bob IDE</div>
+                <div class="s5-cd">提前 3 天安裝，支援 macOS / Windows / Linux</div>
+              </div>
+              <div class="s5-card">
+                <div class="s5-ic p">🔧</div>
+                <div class="s5-ct">Git + Extensions</div>
+                <div class="s5-cd">安裝 Git 及 Java Extension Pack</div>
+              </div>
+            </div>
+            <div class="s5-prog">
+              <div class="s5-pl"><span>準備進度</span><span>2 / 4 完成</span></div>
+              <div class="s5-tr"><div class="s5-fill"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desc-grid">
+      <div class="desc-card"><h4>色調</h4><p>淡紫 + 薄荷漸層底，霜白半透明卡片，柔和現代感</p></div>
+      <div class="desc-card"><h4>排版</h4><p>三欄 Glass 卡片 + 進度條，視覺引導完成度感知</p></div>
+      <div class="desc-card"><h4>適合情境</h4><p>視覺最現代時尚，適合對外展示或行銷場景</p></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">Made with IBM Bob</div>
+
+</body>
+</html>

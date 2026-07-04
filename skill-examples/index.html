@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferrari x IBM — Reimagined Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070707;
+      --bg-soft: #111111;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-strong: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f5f1ea;
+      --muted: #b8b0a7;
+      --red: #ff2800;
+      --red-deep: #8f1200;
+      --silver: #d8d2ca;
+      --gold: #9f8a6a;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 40, 0, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08), transparent 18%),
+        linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+      opacity: 0.35;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 7, 7, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--red), #3a0900);
+      box-shadow: 0 0 30px rgba(255, 40, 0, 0.35);
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 22px;
+      font-size: 13px;
+      color: var(--silver);
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-visual {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      min-height: 680px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    .hero-title {
+      margin: 18px 0 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(4rem, 8vw, 7.4rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      max-width: 8ch;
+    }
+
+    .hero-title span {
+      color: var(--red);
+      text-shadow: 0 0 28px rgba(255, 40, 0, 0.28);
+    }
+
+    .hero-subtitle {
+      max-width: 560px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--red), #8f1200);
+      color: white;
+      box-shadow: 0 18px 40px rgba(255, 40, 0, 0.22);
+    }
+
+    .button-secondary {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .meta-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .hero-visual {
+      min-height: 680px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.55)),
+        url("https://www.ibm.com/content/dam/adobe-cms/default-images/250123_SFHP_F1_CLeclerc_Red_RS_TJ_06875.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg") center/cover no-repeat;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.82));
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .floating-panel {
+      align-self: flex-end;
+      width: min(320px, 100%);
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(10, 10, 10, 0.58);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .floating-panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    .floating-panel p {
+      margin: 0;
+      color: #ddd5cb;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      margin: 12px 0 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .story-card,
+    .quote-card,
+    .feature-card,
+    .business-card,
+    .capability-card,
+    .case-card,
+    .newsletter {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      box-shadow: var(--shadow);
+    }
+
+    .story-card {
+      padding: 34px;
+      min-height: 420px;
+      display: grid;
+      align-content: space-between;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        radial-gradient(circle at top right, rgba(255,40,0,0.18), transparent 28%);
+    }
+
+    .story-number {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 800;
+      line-height: 0.9;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.28);
+    }
+
+    .story-card p {
+      max-width: 58ch;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .quote-card {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        url("https://assets.ibm.com/is/image/ibm/251017_sfhp_f1_r19_usa_ca_r1903608?ts=1777565290821&dpr=off") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.82));
+    }
+
+    .quote-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-mark {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 96px;
+      line-height: 0.8;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .quote-text {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      line-height: 1.1;
+      max-width: 12ch;
+    }
+
+    .app-showcase {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .phone-stage {
+      position: relative;
+      min-height: 720px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,40,0,0.22), transparent 24%),
+        linear-gradient(180deg, #151515 0%, #090909 100%);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+    }
+
+    .phone-stage::before,
+    .phone-stage::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+    }
+
+    .phone-stage::before {
+      width: 240px;
+      height: 240px;
+      background: rgba(255, 40, 0, 0.22);
+      top: 80px;
+      left: 40px;
+    }
+
+    .phone-stage::after {
+      width: 280px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.08);
+      bottom: 80px;
+      right: 20px;
+    }
+
+    .phone {
+      position: relative;
+      width: min(320px, 78%);
+      aspect-ratio: 0.5;
+      border-radius: 42px;
+      padding: 14px;
+      background: linear-gradient(180deg, #1f1f1f, #090909);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+      z-index: 1;
+    }
+
+    .phone-screen {
+      height: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.72)),
+        url("https://assets.ibm.com/is/image/ibm/ferrari-2026-mobile-app-screens?ts=1777565295397&dpr=off") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .phone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      font-size: 12px;
+      width: fit-content;
+    }
+
+    .phone-main h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 42px;
+      line-height: 0.95;
+    }
+
+    .phone-main p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -30% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,40,0,0.22), transparent 70%);
+    }
+
+    .feature-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--silver);
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+      max-width: 30ch;
+    }
+
+    .business-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+    }
+
+    .business-card {
+      padding: 34px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .business-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 58ch;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .business-visual {
+      min-height: 520px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.72)),
+        url("https://assets.ibm.com/is/image/ibm/260306_sf26_r01_australia_ac_cat2647?ts=1777565293808&dpr=off") center/cover no-repeat;
+      box-shadow: var(--shadow);
+      position: relative;
+      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .business-visual .floating-panel {
+      align-self: auto;
+      width: min(360px, 100%);
+    }
+
+    .capability-grid,
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .capability-card,
+    .case-card {
+      padding: 24px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .capability-card h3,
+    .case-card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .capability-card p,
+    .case-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .card-link {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .card-link::after {
+      content: "↗";
+      color: var(--red);
+    }
+
+    .newsletter {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin: 42px 0 72px;
+      background:
+        linear-gradient(135deg, rgba(255,40,0,0.16), rgba(255,255,255,0.04)),
+        rgba(255,255,255,0.03);
+    }
+
+    .newsletter h2 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 0.95;
+    }
+
+    .newsletter p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 58ch;
+    }
+
+    .footer {
+      padding: 0 0 42px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .section-head,
+      .story-grid,
+      .app-showcase,
+      .business-layout,
+      .newsletter {
+        grid-template-columns: 1fr;
+      }
+
+      .capability-grid,
+      .case-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .phone-stage,
+      .business-card,
+      .business-visual {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        min-height: 72px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero-copy,
+      .story-card,
+      .quote-card,
+      .business-card,
+      .newsletter {
+        padding: 24px;
+      }
+
+      .hero-meta,
+      .metric-row,
+      .feature-grid,
+      .capability-grid,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .hero-title {
+        max-width: none;
+      }
+
+      .quote-text {
+        max-width: none;
+        font-size: 28px;
+      }
+
+      .phone {
+        width: min(300px, 84%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">F</span>
+        <span>IBM × Ferrari / Reimagined</span>
+      </a>
+      <nav class="nav">
+        <a href="#story">Tifosi</a>
+        <a href="#app">App Experience</a>
+        <a href="#business">Business Impact</a>
+        <a href="#beyond">Beyond Ferrari</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Fueling the Ferrari Fanbase</div>
+            <h1 class="hero-title">Where <span>speed</span> meets story.</h1>
+            <p class="hero-subtitle">
+              以更具電影感與精品感的數位語言，重新演繹 IBM 與 Scuderia Ferrari HP 的合作敘事。
+              這個版本聚焦於情緒張力、資訊層次與沉浸式視覺節奏，讓 AI、賽道與全球 Tifosi 的熱情在同一個畫面裡共振。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#app">Explore the experience</a>
+              <a class="button button-secondary" href="#business">Watch the transformation</a>
+            </div>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-card">
+              <strong>400M</strong>
+              <span>全球 Tifosi 所構成的情感網絡，跨越世代與地域。</span>
+            </div>
+            <div class="meta-card">
+              <strong>AI</strong>
+              <span>以 watsonx 驅動內容生成、洞察整理與互動體驗。</span>
+            </div>
+            <div class="meta-card">
+              <strong>24/7</strong>
+              <span>從賽前、賽中到賽後，持續延伸粉絲參與深度。</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-overlay">
+            <div class="eyebrow">Scuderia Ferrari HP × IBM watsonx</div>
+            <div class="floating-panel">
+              <h3>Editorial Performance</h3>
+              <p>
+                不是單純展示科技，而是把速度、數據與品牌神話轉譯成一種高端數位雜誌般的觀看體驗。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">The Most Passionate Fans in the World</div>
+            <h2 class="section-title">A sea of red, reframed with elegance.</h2>
+          </div>
+          <p class="section-copy">
+            原始網站講述的是 Ferrari 與全球粉絲之間的深厚連結。這次重設計將這份情感轉化為更具張力的敘事節奏：
+            大面積留白、強烈對比、精準排版與高質感材質感，讓「熱愛」不只是資訊，而是一種被看見的氛圍。
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="story-number">400M</div>
+            <p>
+              幾近四億名 Tifosi，讓 Ferrari 不只是車隊，而是一種全球文化現象。從賽道邊的旗幟、城市中的紅色身影，
+              到手機裡即時更新的內容流，這份熱情值得一個更當代、更精緻、更具沉浸感的數位舞台。
+            </p>
+          </article>
+
+          <aside class="quote-card">
+            <div class="quote-mark">“</div>
+            <div class="quote-text">The fan experience should feel as iconic as the machine itself.</div>
+            <div class="eyebrow">Luxury. Precision. Emotion.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="app">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">The Formula for Fan Engagement</div>
+            <h2 class="section-title">AI-powered insight, now staged like a flagship product.</h2>
+          </div>
+          <p class="section-copy">
+            將原站的 app 敘事重新包裝成更像精品科技發表的展示方式。手機介面不再只是功能截圖，
+            而是整體體驗的核心舞台：更強的聚焦、更清楚的層級，以及更具未來感的互動語彙。
+          </p>
+        </div>
+
+        <div class="app-showcase">
+          <div class="phone-stage">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-top">
+                  <span>09:41</span>
+                  <span>Scuderia Ferrari App</span>
+                </div>
+                <div class="phone-main">
+                  <div class="phone-chip">Live Race Centre</div>
+                  <h3>Every lap, every signal, every story.</h3>
+                  <p>
+                    以 AI 彙整賽事脈絡、歷史背景與即時摘要，讓粉絲在掌心中獲得更完整、更有情境的觀賽體驗。
+                  </p>
+                </div>
+                <div class="phone-chip">Powered by IBM watsonx</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-index">01</div>
+              <h3>Race Centre</h3>
+              <p>以更具視覺張力的方式呈現數據、歷史脈絡與 AI 生成賽事摘要，讓資訊更像敘事。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-index">02</div>
+              <h3>AI Companion</h3>
+              <p>透過自然語言互動，讓粉絲能快速探索車手、車隊、賽道與比賽中的關鍵洞察。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-index">03</div>
+              <h3>Paddock Club</h3>
+              <p>為現場貴賓打造更高端的數位禮遇，包含即時 team radio 與 AI 解說輔助。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-index">04</div>
+              <h3>Game Centre</h3>
+              <p>把預測、測驗、徽章與排行榜整合成更具收藏感與競賽感的粉絲互動系統。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="business">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Scuderia Ferrari HP is a smarter business</div>
+            <h2 class="section-title">More content. Less friction. Sharper orchestration.</h2>
+          </div>
+          <p class="section-copy">
+            原站強調 IBM Consulting 如何協助 Ferrari 重新設計 app、優化資訊架構與提升內容產製效率。
+            在這個版本中，這段商業價值被轉譯成更高級的資訊編排，讓「效率」看起來也足夠迷人。
+          </p>
+        </div>
+
+        <div class="business-layout">
+          <article class="business-card">
+            <div>
+              <p>
+                透過重新梳理資訊架構、介面層級與 AI 內容流程，編輯團隊能更快產出更一致的內容，
+                同時讓粉絲接收到更即時、更個人化的體驗。這不只是 app redesign，而是品牌敘事系統的升級。
+              </p>
+              <div class="metric-row">
+                <div class="metric">
+                  <strong>IA</strong>
+                  <span>更清晰的資訊架構，降低探索成本。</span>
+                </div>
+                <div class="metric">
+                  <strong>UI</strong>
+                  <span>更高端一致的介面語言，提升品牌感知。</span>
+                </div>
+                <div class="metric">
+                  <strong>GenAI</strong>
+                  <span>加速內容生成與洞察整理，提升團隊效率。</span>
+                </div>
+              </div>
+            </div>
+            <a class="card-link" href="#capabilities">Start the smarter business journey</a>
+          </article>
+
+          <div class="business-visual">
+            <div class="floating-panel">
+              <h3>Transformation Layer</h3>
+              <p>
+                從內容供應鏈到粉絲互動介面，IBM 將 Ferrari 的速度哲學延伸到數位產品與營運效率之中。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="capabilities">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">IBM Capability Stack</div>
+            <h2 class="section-title">Four pillars behind the experience.</h2>
+          </div>
+          <p class="section-copy">
+            保留原站的四大能力模組，但以更一致的卡片系統與更強烈的視覺節奏呈現，
+            讓技術能力不再只是條列，而是整體品牌敘事的一部分。
+          </p>
+        </div>
+
+        <div class="capability-grid">
+          <article class="capability-card">
+            <div>
+              <h3>IBM Consulting</h3>
+              <p>協助 Ferrari 將 AI 潛力轉化為實際的粉絲互動與內容生產力提升。</p>
+            </div>
+            <a class="card-link" href="#">Engage IBM Consulting</a>
+          </article>
+          <article class="capability-card">
+            <div>
+              <h3>Hybrid Cloud</h3>
+              <p>結合 IBM 與 AWS 的混合雲基礎架構，支撐高效能與高彈性的數位體驗。</p>
+            </div>
+            <a class="card-link" href="#">Optimize with hybrid cloud</a>
+          </article>
+          <article class="capability-card">
+            <div>
+              <h3>watsonx.data</h3>
+              <p>管理與整理大量異質資料，為 AI 洞察與內容生成提供穩定基礎。</p>
+            </div>
+            <a class="card-link" href="#">Put data to work</a>
+          </article>
+          <article class="capability-card">
+            <div>
+              <h3>IBM Bob™</h3>
+              <p>以 AI coding agent 加速開發流程，縮短從概念到上線的距離。</p>
+            </div>
+            <a class="card-link" href="#">Accelerate development</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beyond">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Beyond Scuderia Ferrari</div>
+            <h2 class="section-title">The same intelligence, translated across industries.</h2>
+          </div>
+          <p class="section-copy">
+            延續原站的 related work 區塊，這裡以更像精品案例牆的方式呈現 IBM 如何把相同的技術能力，
+            套用到法律、體育、稅務與娛樂等不同場景。
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card">
+            <div>
+              <h3>Dynamiq</h3>
+              <p>以 AI 法務代理人加速決策、減少人工流程並提升合規品質。</p>
+            </div>
+            <a class="card-link" href="#">Read the case study</a>
+          </article>
+          <article class="case-card">
+            <div>
+              <h3>The Masters</h3>
+              <p>將 AI 洞察帶入賽事 app，讓觀眾獲得更即時、更深入的內容體驗。</p>
+            </div>
+            <a class="card-link" href="#">Read the case study</a>
+          </article>
+          <article class="case-card">
+            <div>
+              <h3>EY</h3>
+              <p>以 AI 驅動全球資料管理與稅務合規自動化，提升營運效率。</p>
+            </div>
+            <a class="card-link" href="#">Read the case study</a>
+          </article>
+          <article class="case-card">
+            <div>
+              <h3>UFC</h3>
+              <p>運用生成式 AI 與 AI agents，打造更豐富、更即時的粉絲洞察。</p>
+            </div>
+            <a class="card-link" href="#">Read the case study</a>
+          </article>
+        </div>
+
+        <div class="newsletter">
+          <div>
+            <div class="eyebrow">Think newsletter</div>
+            <h2>Stay close to the future of fan experience.</h2>
+            <p>
+              訂閱企業科技與 AI 趨勢內容，持續追蹤品牌如何把資料、內容與體驗整合成更高價值的數位產品。
+            </p>
+          </div>
+          <a class="button button-primary" href="#">Subscribe today</a>
+        </div>
+
+        <footer class="footer">
+          <span>Concept redesign inspired by IBM × Scuderia Ferrari HP.</span>
+          <span>Built as a premium single-page editorial experience.</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

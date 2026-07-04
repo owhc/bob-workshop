@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
  * 初始化分頁功能
  */
 function initializeTabs() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-panel');
 
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -39,16 +39,16 @@ function initializeTabs() {
  */
 function switchTab(targetTab, tabButtons, tabContents) {
     // 移除所有 active 類別
-    tabButtons.forEach(btn => btn.classList.remove('active'));
-    tabContents.forEach(content => content.classList.remove('active'));
+    tabButtons.forEach(btn => btn.classList.remove('tab-btn--active'));
+    tabContents.forEach(content => content.classList.remove('tab-panel--active'));
 
     // 添加 active 類別到目標元素
     const activeButton = document.querySelector(`[data-tab="${targetTab}"]`);
     const activeContent = document.getElementById(targetTab);
 
     if (activeButton && activeContent) {
-        activeButton.classList.add('active');
-        activeContent.classList.add('active');
+        activeButton.classList.add('tab-btn--active');
+        activeContent.classList.add('tab-panel--active');
 
         // 儲存當前分頁狀態
         saveTabState(targetTab);
@@ -106,15 +106,15 @@ function handleTabKeyboard(e, tabButtons) {
  * 初始化無障礙功能
  */
 function initializeAccessibility() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-panel');
 
     // 設定 ARIA 屬性
     tabButtons.forEach((button, index) => {
         const tabId = button.getAttribute('data-tab');
         button.setAttribute('role', 'tab');
         button.setAttribute('aria-controls', tabId);
-        button.setAttribute('aria-selected', button.classList.contains('active'));
+        button.setAttribute('aria-selected', button.classList.contains('tab-btn--active'));
         button.setAttribute('id', `tab-${tabId}`);
     });
 
@@ -172,8 +172,8 @@ function restoreTabState() {
     try {
         const savedTab = localStorage.getItem('bobWorkshopActiveTab');
         if (savedTab) {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+                const tabContents = document.querySelectorAll('.tab-panel');
             const targetButton = document.querySelector(`[data-tab="${savedTab}"]`);
             
             if (targetButton) {
@@ -272,15 +272,15 @@ function initializePrint() {
     // 監聽列印事件
     window.addEventListener('beforeprint', function() {
         // 列印前顯示所有分頁內容
-        document.querySelectorAll('.tab-content').forEach(content => {
+        document.querySelectorAll('.tab-panel').forEach(content => {
             content.style.display = 'block';
         });
     });
 
     window.addEventListener('afterprint', function() {
         // 列印後恢復原始狀態
-        document.querySelectorAll('.tab-content').forEach(content => {
-            if (!content.classList.contains('active')) {
+        document.querySelectorAll('.tab-panel').forEach(content => {
+            if (!content.classList.contains('tab-panel--active')) {
                 content.style.display = 'none';
             }
         });

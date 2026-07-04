@@ -1,0 +1,267 @@
+/* ══════════════════════════════════════════
+   Soft Glass Frost — Stage Theme Override
+   Applies to all jho/stages/*.html
+══════════════════════════════════════════ */
+
+/* ── Override root variables ── */
+:root {
+  --bg:       #eceef8;
+  --surface:  rgba(255,255,255,.62);
+  --surface2: rgba(255,255,255,.42);
+  --border:   rgba(255,255,255,.75);
+  --border-i: rgba(99,102,241,.14);
+  --accent:   #6366f1;
+  --accent2:  #10b981;
+  --warn:     #f59e0b;
+  --red:      #ef4444;
+  --green:    #10b981;
+  --text:     #1e1b4b;
+  --muted:    #6b7ab8;
+  --stage-colors: #818cf8, #34d399, #a78bfa, #fbbf24, #f472b6, #34d399;
+}
+
+/* ── Background: gradient + ambient orbs ── */
+body {
+  background: linear-gradient(135deg, #e8ecf8 0%, #f0eaf8 55%, #e8f4f1 100%) !important;
+  background-attachment: fixed !important;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -120px; right: -100px;
+  width: 560px; height: 560px;
+  background: rgba(99,102,241,.09);
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px; left: -80px;
+  width: 420px; height: 420px;
+  background: rgba(16,185,129,.07);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure all content sits above orbs */
+.header, .main-layout, .sidebar, .container { position: relative; z-index: 1; }
+
+/* ── Header bar ── */
+.header {
+  background: rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255,255,255,.75) !important;
+  box-shadow: 0 1px 0 rgba(99,102,241,.08) !important;
+}
+
+.logo { color: #1e1b4b !important; }
+
+.logo-dot {
+  background: #6366f1 !important;
+  box-shadow: 0 0 10px rgba(99,102,241,.5) !important;
+}
+
+.meta { color: #6b7ab8 !important; }
+.meta span { color: #1e1b4b !important; }
+
+/* ── Home link ── */
+.home-link {
+  background: rgba(99,102,241,.08) !important;
+  border: 1px solid rgba(99,102,241,.22) !important;
+  color: #6366f1 !important;
+  border-radius: 8px !important;
+}
+.home-link:hover {
+  background: #6366f1 !important;
+  color: #fff !important;
+  border-color: #6366f1 !important;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: rgba(255,255,255,.58) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-right: 1px solid rgba(255,255,255,.72) !important;
+}
+
+.sidebar-title {
+  color: #6b7ab8 !important;
+  border-bottom: 1px solid rgba(99,102,241,.12) !important;
+}
+
+.toc-link { color: #6b7ab8 !important; border-left-color: transparent !important; }
+.toc-link:hover {
+  background: rgba(99,102,241,.07) !important;
+  color: #1e1b4b !important;
+}
+.toc-link.active {
+  background: rgba(99,102,241,.1) !important;
+  color: #6366f1 !important;
+  border-left-color: #6366f1 !important;
+}
+
+/* ── Nav buttons ── */
+.nav-buttons {
+  border-top: 1px solid rgba(99,102,241,.12) !important;
+}
+
+.nav-btn {
+  background: rgba(255,255,255,.65) !important;
+  border: 1px solid rgba(255,255,255,.8) !important;
+  color: #1e1b4b !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all .2s ease !important;
+}
+.nav-btn:hover {
+  background: #6366f1 !important;
+  border-color: #6366f1 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(99,102,241,.3) !important;
+}
+
+/* ── Stage header ── */
+/* theme.css 用漸層背景 → 改為玻璃卡片，確保文字可讀 */
+.stage-header {
+  background: rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,255,255,.85) !important;
+  border-top: 3px solid #6366f1 !important;
+  box-shadow: 0 4px 24px rgba(99,102,241,.12) !important;
+  color: #1e1b4b !important;
+}
+.stage-header h1 { color: #1e1b4b !important; }
+.stage-header p  { color: #6b7ab8 !important; opacity: 1 !important; }
+
+/* inline-style stage headers */
+.stage-badge { color: #6366f1 !important; }
+.stage-title { color: #1e1b4b !important; }
+.stage-desc  { color: #6b7ab8 !important; }
+
+/* ── Talking point ── */
+.talking-point {
+  background: rgba(255,255,255,.65) !important;
+  border: 1px solid rgba(255,255,255,.82) !important;
+  border-top: 2px solid #6366f1 !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 16px rgba(99,102,241,.08) !important;
+}
+.tp-label { color: #6366f1 !important; }
+.tp-header {
+  border-bottom: 1px solid rgba(99,102,241,.15) !important;
+}
+
+/* ── Section label ── */
+.section-label { color: #6b7ab8 !important; }
+.section-label::after { background: rgba(99,102,241,.15) !important; }
+
+/* ── Flow track / bubbles ── */
+.flow-bubble {
+  background: rgba(255,255,255,.65) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 2px 12px rgba(99,102,241,.1) !important;
+}
+.flow-label { color: #1e1b4b !important; }
+.flow-sub   { color: #6b7ab8 !important; }
+.flow-arrow { color: rgba(99,102,241,.3) !important; }
+
+/* ── KV cards ── */
+.kv-card {
+  background: rgba(255,255,255,.65) !important;
+  border: 1px solid rgba(255,255,255,.8) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 2px 12px rgba(99,102,241,.07) !important;
+}
+.kv-val { color: #6366f1 !important; }
+.kv-key { color: #6b7ab8 !important; }
+
+/* ── Setup note ── */
+.setup-note {
+  background: rgba(245,158,11,.07) !important;
+  border: 1px solid rgba(245,158,11,.22) !important;
+  border-radius: 10px !important;
+  color: #92400e !important;
+}
+.setup-note strong { color: #b45309 !important; }
+
+/* ── Tip ── */
+.tip {
+  background: rgba(16,185,129,.07) !important;
+  border: 1px solid rgba(16,185,129,.22) !important;
+  border-radius: 10px !important;
+  color: #065f46 !important;
+}
+.tip strong { color: #059669 !important; }
+
+/* ── Generic cards / blocks shared across stages ── */
+.card, .step-card, .item-card, .prompt-card, .result-card,
+.feature-card, .action-card, .summary-card, .info-card,
+.detail-card, .example-card, .block {
+  background: rgba(255,255,255,.65) !important;
+  border: 1px solid rgba(255,255,255,.82) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 16px rgba(99,102,241,.08) !important;
+}
+
+/* ── Code blocks ── */
+pre, .code-block, .prompt-block {
+  background: rgba(22,20,55,.9) !important;
+  border: 1px solid rgba(99,102,241,.22) !important;
+  color: #c7d2fe !important;
+  border-radius: 10px !important;
+}
+code {
+  background: rgba(99,102,241,.08) !important;
+  border: 1px solid rgba(99,102,241,.18) !important;
+  color: #6366f1 !important;
+  border-radius: 5px !important;
+}
+pre code { background: transparent !important; border: none !important; color: inherit !important; }
+
+/* ── Links ── */
+a { color: #6366f1; }
+a:hover { color: #8b5cf6; }
+
+/* ── Tables ── */
+thead, .thead {
+  background: rgba(99,102,241,.12) !important;
+}
+th { color: #6366f1 !important; }
+td { border-bottom: 1px solid rgba(99,102,241,.07) !important; }
+tbody tr:hover { background: rgba(99,102,241,.04) !important; }
+
+/* ── Horizontal rules / dividers ── */
+hr { border-color: rgba(99,102,241,.12) !important; }
+
+/* ── Section titles / h2 / h3 borders ── */
+h2 { color: #1e1b4b !important; }
+h3 { color: #1e1b4b !important; }
+h4 { color: #3730a3 !important; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.25); }
+::-webkit-scrollbar-thumb { background: rgba(99,102,241,.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+::selection { background: rgba(99,102,241,.2); color: #1e1b4b; }
